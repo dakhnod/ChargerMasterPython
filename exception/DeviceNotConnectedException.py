@@ -1,0 +1,2 @@
+class DeviceNotConnectedException(RuntimeError):
+    pass
