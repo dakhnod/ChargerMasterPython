@@ -1,10 +1,10 @@
 import time
-import controller.ChargerController
+import controller
 import usb.core
 
 charger = usb.core.find(idVendor=0, idProduct=1)
 
-controller = controller.ChargerController.ChargerController(charger)
+controller = controller.ChargerController(charger)
 
 controller.start_charge_lipo(0, 4, 100)
 
