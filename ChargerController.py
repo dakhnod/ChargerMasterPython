@@ -50,8 +50,13 @@ class ChargerController:
             raise last_exception
         return call_with_retries
 
-    def get_channel_info(self, channel_index: int):
-        payload = commands.get_channel_status(channel_index)
+    def set_use_balance_leads(self, channel_num: int, use_balance_leads: bool):
+        payload = commands.set_use_balance_leads(channel_num, use_balance_leads)
+        self.usb_device.write(0x01, payload)
+        response = self.usb_device.read(0x81, 64)
+
+    def get_channel_info(self, channel_num: int):
+        payload = commands.get_channel_status(channel_num)
         self.usb_device.write(0x01, payload)
         response = self.usb_device.read(0x81, 64)
         return parser.parse_channel_status(response)
