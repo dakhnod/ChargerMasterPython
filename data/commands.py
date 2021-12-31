@@ -12,6 +12,10 @@ def get_voltage(channel_num: int):
     return create_packet(88, channel_num)
 
 
+def enable_settings_mode(channel_num: int):
+    return create_packet(0x5F, channel_num, [0x05, 0x07, 0x09, 0x03])
+
+
 def set_use_balance_leads(channel_num: int, use_balance_leads: bool):
     return create_packet(0x11, channel_num, [0x06, 0x01 if use_balance_leads else 0x00, 0x00, 0x00])
 

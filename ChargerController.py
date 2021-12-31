@@ -55,6 +55,11 @@ class ChargerController:
         self.usb_device.write(0x01, payload)
         response = self.usb_device.read(0x81, 64)
 
+    def enable_settings_mode(self, channel_num: int):
+        payload = commands.enable_settings_mode(channel_num)
+        self.usb_device.write(0x01, payload)
+        response = self.usb_device.read(0x81, 64)
+
     def get_channel_info(self, channel_num: int):
         payload = commands.get_channel_status(channel_num)
         self.usb_device.write(0x01, payload)
