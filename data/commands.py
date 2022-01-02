@@ -12,12 +12,13 @@ def get_voltage(channel_num: int):
     return create_packet(88, channel_num)
 
 
-def enable_settings_mode(channel_num: int):
-    return create_packet(0x5F, channel_num, [0x05, 0x07, 0x09, 0x03])
+# does not work over USB, only over bluetooth
+# def enable_settings_mode(channel_num: int):
+#     return create_packet(0x5F, channel_num, [0x05, 0x07, 0x09, 0x03])
 
-
-def set_use_balance_leads(channel_num: int, use_balance_leads: bool):
-    return create_packet(0x11, channel_num, [0x06, 0x01 if use_balance_leads else 0x00, 0x00, 0x00])
+# does not work over USB, only over bluetooth
+# def set_use_balance_leads(channel_num: int, use_balance_leads: bool):
+#     return create_packet(0x11, channel_num, [0x06, 0x01 if use_balance_leads else 0x00, 0x00, 0x00])
 
 
 def start_charge(channel_num: int, battery_type: int, charge_type: int, cell_count: 4, charge_current_ma: int, discharge_current_ma: int, voltage_limit_lower: int, voltage_limit_upper: int):
