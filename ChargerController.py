@@ -76,6 +76,26 @@ class ChargerController:
         self.usb_device.write(0x01, payload)
         response = self.usb_device.read(0x81, 64)
 
+    def start_charge_liion(self, channel_num: int, cell_count: 4, charge_current_ma: int):
+        payload = commands.start_charge_liion(channel_num, cell_count, charge_current_ma)
+        self.usb_device.write(0x01, payload)
+        response = self.usb_device.read(0x81, 64)
+
+    def start_storage_liion(self, channel_num: int, cell_count: 4, discharge_current_ma: int):
+        payload = commands.start_storage_liion(channel_num, cell_count, discharge_current_ma)
+        self.usb_device.write(0x01, payload)
+        response = self.usb_device.read(0x81, 64)
+
+    def start_charge_lihv(self, channel_num: int, cell_count: 4, charge_current_ma: int):
+        payload = commands.start_charge_lihv(channel_num, cell_count, charge_current_ma)
+        self.usb_device.write(0x01, payload)
+        response = self.usb_device.read(0x81, 64)
+
+    def start_storage_lihv(self, channel_num: int, cell_count: 4, discharge_current_ma: int):
+        payload = commands.start_storage_lihv(channel_num, cell_count, discharge_current_ma)
+        self.usb_device.write(0x01, payload)
+        response = self.usb_device.read(0x81, 64)
+
     def stop_charge(self, channel_num: int = -1):
         payload = commands.stop_charge(channel_num)
         self.usb_device.write(0x01, payload)
