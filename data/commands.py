@@ -1,4 +1,10 @@
+CHARGE_TYPE_CHARGE = 1
+CHARGE_TYPE_STORAGE = 3
+BATTERY_TYPE_LIHV = 3
+BATTERY_TYPE_LIION = 2
+BATTERY_TYPE_LIPO = 0
 CHANNEL_NUM_ALL = -1
+
 
 def get_system_info(channel_num: int):
     return create_packet(90, channel_num)
@@ -39,11 +45,27 @@ def start_charge(channel_num: int, battery_type: int, charge_type: int, cell_cou
 
 
 def start_charge_lipo(channel_num: int, cell_count: int, charge_current_ma: int):
-    return start_charge(channel_num, 0, 1, cell_count, charge_current_ma, 100, 3200, 4200)
+    return start_charge(channel_num, BATTERY_TYPE_LIPO, CHARGE_TYPE_CHARGE, cell_count, charge_current_ma, 100, 3200, 4200)
 
 
 def start_storage_lipo(channel_num: int, cell_count: int, discharge_current_ma: int):
-    return start_charge(channel_num, 0, 3, cell_count, discharge_current_ma, discharge_current_ma, 3200, 4200)
+    return start_charge(channel_num, BATTERY_TYPE_LIPO, CHARGE_TYPE_STORAGE, cell_count, discharge_current_ma, discharge_current_ma, 3200, 4200)
+
+
+def start_charge_liion(channel_num: int, cell_count: int, charge_current_ma: int):
+    return start_charge(channel_num, BATTERY_TYPE_LIION, CHARGE_TYPE_CHARGE, cell_count, charge_current_ma, 100, 3000, 4100)
+
+
+def start_storage_liion(channel_num: int, cell_count: int, discharge_current_ma: int):
+    return start_charge(channel_num, BATTERY_TYPE_LIION, CHARGE_TYPE_STORAGE, cell_count, discharge_current_ma, discharge_current_ma, 3200, 4200)
+
+
+def start_charge_lihv(channel_num: int, cell_count: int, charge_current_ma: int):
+    return start_charge(channel_num, BATTERY_TYPE_LIHV, CHARGE_TYPE_CHARGE, cell_count, charge_current_ma, 100, 3200, 4350)
+
+
+def start_storage_lihv(channel_num: int, cell_count: int, discharge_current_ma: int):
+    return start_charge(channel_num, BATTERY_TYPE_LIHV, CHARGE_TYPE_STORAGE, cell_count, discharge_current_ma, discharge_current_ma, 3200, 4200)
 
 
 def stop_charge(channel_num: int = -1):
